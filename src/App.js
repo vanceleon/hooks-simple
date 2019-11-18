@@ -1,24 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import ResourceList from './components/ResourceList';
+
+// import NoteList from './components/noteList';
+
+// how to passthrough obj
+// const [form, setValues] = useState({
+//   username: '',
+//   password: ''
+// });
+
+const initialState = {
+  str: 'post'
+}
 
 function App() {
+  const [resource, setResource] = useState(initialState);
+  
+  
+  // const add1ToCounter = () => {
+  //   const newCounterValue = state.resource + 1;
+  //   setResource({resource: newCounterValue});
+  // }
+
+  const post = str => {
+    // e.preventDefault();
+    setResource({str: str})
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>
+        <button onClick={() => post('post')}>Post</button>
+        <button onClick={() => post('todos')}>Todos</button>
+      </div>
+      <ResourceList resource= {resource}/>
     </div>
   );
 }
